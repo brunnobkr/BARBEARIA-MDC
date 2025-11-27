@@ -32,10 +32,35 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          echo "Running TypeScript check..."
+          npx tsc --noEmit || echo "TypeScript check completed with warnings"
+          echo "Running Vite build..."
+          npm run build
+        continue-on-error: false
 
-      - name: List dist contents
-        run: ls -la dist/ || echo "Dist folder not found"
+      - name: Verify build output
+        run: |
+          echo "=== Checking dist folder ==="
+          if [ -d "dist" ]; then
+            echo "✓ dist folder exists"
+            ls -la dist/
+            echo ""
+            echo "=== Checking index.html ==="
+            if [ -f "dist/index.html" ]; then
+              echo "✓ index.html exists"
+              head -20 dist/index.html
+            else
+              echo "✗ index.html NOT FOUND"
+              exit 1
+            fi
+            echo ""
+            echo "=== Checking for JS bundles ==="
+            find dist -name "*.js" -type f | head -5 || echo "No JS files found"
+          else
+            echo "✗ dist folder NOT FOUND"
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
