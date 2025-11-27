@@ -8,5 +8,6 @@ export default defineConfig({
     port: 3000,
     strictPort: false, // Se a porta 3000 estiver ocupada, tenta a próxima disponível
   },
+  assetsInclude: ['**/*.svg'],
 })
 
