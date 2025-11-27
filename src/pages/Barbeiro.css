@@ -1,0 +1,170 @@
+.barbeiro-page {
+  flex: 1;
+  padding: 3rem 0;
+  background-color: var(--bg-light);
+}
+
+.barbeiro-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+}
+
+.barbeiro-avatar-large {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--text-light);
+  flex-shrink: 0;
+}
+
+.barbeiro-info {
+  flex: 1;
+}
+
+.barbeiro-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.barbeiro-descricao {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.barbeiro-content {
+  display: grid;
+  gap: 3rem;
+}
+
+.servicos-section,
+.horarios-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.servicos-section h2,
+.horarios-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.servico-card {
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.servico-card:hover {
+  border-color: var(--secondary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.servico-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.servico-card p {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.servico-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.servico-preco {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.horarios-disponiveis {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dia-card {
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.dia-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.horarios-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.horario-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-dark);
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .barbeiro-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .barbeiro-avatar-large {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+  }
+
+  .barbeiro-info h1 {
+    font-size: 2rem;
+  }
+
+  .servicos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
