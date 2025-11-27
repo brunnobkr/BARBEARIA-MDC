@@ -76,6 +76,21 @@ src/
   └── App.tsx        # Componente principal
 ```
 
+## Deploy no GitHub Pages
+
+O site está configurado para deploy automático no GitHub Pages através do GitHub Actions.
+
+**URL do site:** https://brunnobkr.github.io/BARBEARIA-MDC/
+
+### Como ativar o GitHub Pages:
+
+1. Vá em **Settings** do repositório no GitHub
+2. Role até a seção **Pages** no menu lateral
+3. Em **Source**, selecione **GitHub Actions**
+4. O deploy será feito automaticamente a cada push na branch `main`
+
+O workflow já está configurado e fará o build e deploy automaticamente.
+
 ## Notas
 
 - Os agendamentos são salvos no `localStorage` do navegador
