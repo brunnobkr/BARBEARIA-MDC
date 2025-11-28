@@ -100,6 +100,13 @@ jobs:
             if [ -d "dist/assets" ]; then
               ls -la dist/assets/ | head -10
             fi
+            echo ""
+            echo "=== Checking 404.html ==="
+            if [ -f "dist/404.html" ]; then
+              echo "✓ 404.html exists in dist"
+            else
+              echo "⚠ WARNING: 404.html not found in dist (may be normal if not needed)"
+            fi
           else
             echo "✗ dist folder NOT FOUND"
             exit 1
