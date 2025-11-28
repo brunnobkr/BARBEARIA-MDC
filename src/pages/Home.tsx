@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { barbeiros } from '../data/barbeiros'
-import logoUrl from '../assets/logo.svg?url'
 import './Home.css'
 
 const Home = () => {
@@ -8,7 +7,6 @@ const Home = () => {
     <div className="home">
       <section className="hero">
         <div className="hero-content">
-          <img src={logoUrl} alt="Barbearia MDC" className="hero-logo" />
           <h1>Bem-vindo à Barbearia MDC</h1>
           <p>Estilo, qualidade e tradição em cada corte</p>
           <Link to="/agendamento" className="btn-primary">
