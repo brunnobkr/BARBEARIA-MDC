@@ -31,7 +31,7 @@ const Home = () => {
                 <h3>{barbeiro.nome}</h3>
                 <p>{barbeiro.descricao}</p>
                 <div className="barbeiro-stats">
-                  <span>{barbeiro.servicos.length} Serviços</span>
+                  {barbeiro.servicos.length} Serviços
                 </div>
               </Link>
             ))}
@@ -44,35 +44,43 @@ const Home = () => {
           <h2>Nossos Serviços</h2>
           <div className="servicos-grid">
             <div className="servico-item">
-              <h3>✂️ Corte Social</h3>
+              <div className="servico-icon">✂️</div>
+              <h3>Corte Social</h3>
               <p>Corte clássico e elegante</p>
             </div>
             <div className="servico-item">
-              <h3>🎨 Corte Degradê</h3>
+              <div className="servico-icon">🎨</div>
+              <h3>Corte Degradê</h3>
               <p>Degradê moderno e estiloso</p>
             </div>
             <div className="servico-item">
-              <h3>🧔 Barba</h3>
+              <div className="servico-icon">🧔</div>
+              <h3>Barba</h3>
               <p>Aparar e modelar barba</p>
             </div>
             <div className="servico-item">
-              <h3>👁️ Sobrancelha</h3>
+              <div className="servico-icon">👁️</div>
+              <h3>Sobrancelha</h3>
               <p>Design e modelagem</p>
             </div>
             <div className="servico-item">
-              <h3>🎨 Pintura de Cabelo</h3>
+              <div className="servico-icon">🎨</div>
+              <h3>Pintura de Cabelo</h3>
               <p>Coloração completa</p>
             </div>
             <div className="servico-item">
-              <h3>✨ Luzes</h3>
+              <div className="servico-icon">✨</div>
+              <h3>Luzes</h3>
               <p>Aplicação de luzes</p>
             </div>
             <div className="servico-item">
-              <h3>⚪ Descolorimento (Nevou)</h3>
+              <div className="servico-icon">⚪</div>
+              <h3>Descolorimento</h3>
               <p>Descolorimento completo</p>
             </div>
             <div className="servico-item">
-              <h3>🧴 Limpeza de Pele</h3>
+              <div className="servico-icon">🧴</div>
+              <h3>Limpeza de Pele</h3>
               <p>Limpeza facial profunda</p>
             </div>
           </div>
@@ -93,4 +101,3 @@ const Home = () => {
 }
 
 export default Home
-

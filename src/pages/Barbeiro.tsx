@@ -11,7 +11,9 @@ const Barbeiro = () => {
       <div className="barbeiro-page">
         <div className="container">
           <h1>Barbeiro não encontrado</h1>
-          <Link to="/">Voltar para a página inicial</Link>
+          <Link to="/" className="btn-primary">
+            Voltar para Início
+          </Link>
         </div>
       </div>
     )
@@ -33,43 +35,42 @@ const Barbeiro = () => {
           </div>
         </div>
 
-        <div className="barbeiro-content">
-          <section className="servicos-section">
-            <h2>Serviços Disponíveis</h2>
-            <div className="servicos-grid">
-              {barbeiro.servicos.map((servico) => (
-                <div key={servico.id} className="servico-card">
+        <section className="servicos-section">
+          <h2>Serviços Oferecidos</h2>
+          <div className="servicos-list">
+            {barbeiro.servicos.map((servico) => (
+              <div key={servico.id} className="servico-card">
+                <div className="servico-header">
                   <h3>{servico.nome}</h3>
-                  <p>{servico.descricao}</p>
-                  <div className="servico-details">
-                    <span>⏱️ {servico.duracao} min</span>
-                    <span className="servico-preco">R$ {servico.preco.toFixed(2)}</span>
-                  </div>
+                  <span className="servico-price">R$ {servico.preco.toFixed(2)}</span>
                 </div>
-              ))}
-            </div>
-          </section>
+                <p>{servico.descricao}</p>
+                <div className="servico-meta">
+                  <span>⏱️ {servico.duracao} minutos</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          <section className="horarios-section">
-            <h2>Horários Disponíveis</h2>
-            <div className="horarios-disponiveis">
-              {barbeiro.horariosDisponiveis.map((horario) => (
-                <div key={horario.dia} className="dia-card">
-                  <h3>{horario.dia}</h3>
-                  <div className="horarios-list">
-                    {horario.horarios.map((h) => (
-                      <span key={h} className="horario-badge">{h}</span>
-                    ))}
-                  </div>
+        <section className="horarios-section">
+          <h2>Horários Disponíveis</h2>
+          <div className="horarios-list">
+            {barbeiro.horariosDisponiveis.map((horario) => (
+              <div key={horario.dia} className="horario-item">
+                <h3>{horario.dia}</h3>
+                <div className="horarios-grid">
+                  {horario.horarios.map((h) => (
+                    <span key={h} className="horario-badge">{h}</span>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </section>
-        </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   )
 }
 
 export default Barbeiro
-

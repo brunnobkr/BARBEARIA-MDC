@@ -1,11 +1,12 @@
+/* Mobile-First Home Page */
 .home {
   flex: 1;
 }
 
 .hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--bg-dark) 100%);
   color: var(--text-light);
-  padding: 4rem 1.5rem;
+  padding: 3rem 1rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -22,28 +23,22 @@
   pointer-events: none;
 }
 
-.hero-logo {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 2rem;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
-
 .hero-content {
   position: relative;
   z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .hero-content h1 {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   margin-bottom: 1rem;
   font-weight: bold;
   line-height: 1.2;
 }
 
 .hero-content p {
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
   opacity: 0.95;
   line-height: 1.5;
@@ -51,19 +46,19 @@
 
 .btn-primary {
   display: inline-block;
-  background-color: var(--secondary-color);
+  background-color: var(--secondary);
   color: var(--text-dark);
   padding: 1rem 2rem;
-  border-radius: 8px;
+  border-radius: var(--radius);
   font-weight: bold;
   font-size: 1rem;
   transition: var(--transition);
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow);
   min-width: 200px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
+  text-align: center;
 }
 
 .btn-primary:hover {
@@ -74,317 +69,190 @@
 
 .btn-primary:active {
   transform: translateY(0);
-  box-shadow: var(--shadow-sm);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 }
 
 .barbeiros-section,
 .servicos-section {
-  padding: 3rem 0;
+  padding: 2rem 0;
 }
 
 .barbeiros-section h2,
 .servicos-section h2 {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
   font-weight: bold;
 }
 
 .barbeiros-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-/* Mobile: manter grid horizontal com scroll se necessário */
-@media (max-width: 768px) {
-  .barbeiros-grid {
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
-    gap: 1rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    padding-bottom: 0.5rem;
-  }
-
-  .barbeiro-card {
-    scroll-snap-align: start;
-    min-width: 200px;
-  }
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .barbeiro-card {
   background: white;
-  border-radius: 12px;
+  border-radius: var(--radius);
   padding: 1.5rem;
   text-align: center;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow);
   transition: var(--transition);
   color: var(--text-dark);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.barbeiro-card:hover,
-.barbeiro-card:focus {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
 }
 
 .barbeiro-card:active {
-  transform: translateY(-2px);
+  transform: scale(0.98);
 }
 
 .barbeiro-avatar {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: bold;
   color: var(--text-light);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow);
 }
 
 .barbeiro-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .barbeiro-card p {
   color: #666;
   margin-bottom: 1rem;
-  line-height: 1.6;
+  line-height: 1.5;
+  font-size: 0.9rem;
 }
 
 .barbeiro-stats {
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
-  color: var(--secondary-color);
+  border-top: 1px solid var(--border);
+  color: var(--secondary);
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .servicos-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-
-/* Mobile: manter grid 2x4 para manter fluidez visual */
-@media (max-width: 768px) {
-  .servicos-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
 }
 
 .servico-item {
   background: white;
-  padding: 1.25rem;
-  border-radius: 10px;
-  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
   text-align: center;
   transition: var(--transition);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.servico-item:hover,
-.servico-item:focus {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
 }
 
 .servico-item:active {
-  transform: translateY(-1px);
+  transform: scale(0.98);
+}
+
+.servico-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .servico-item h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--primary-color);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--primary);
 }
 
 .servico-item p {
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 .cta-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--bg-dark) 100%);
   color: var(--text-light);
-  padding: 3rem 1.5rem;
+  padding: 2.5rem 1rem;
   text-align: center;
 }
 
 .cta-section h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
 
 .cta-section p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
   opacity: 0.95;
 }
 
-/* Mobile Responsive - Mantendo proporções e fluidez */
-@media (max-width: 768px) {
+/* Tablet */
+@media (min-width: 768px) {
   .hero {
-    padding: 3.5rem 1rem;
+    padding: 4rem 1.5rem;
   }
 
   .hero-content h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.25rem;
   }
 
   .hero-content p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-
-  .btn-primary {
-    padding: 1rem 2rem;
-    font-size: 0.95rem;
-    min-width: 200px;
-  }
-
-  .container {
-    padding: 0 1rem;
+    font-size: 1.25rem;
   }
 
   .barbeiros-section,
   .servicos-section {
-    padding: 2.5rem 0;
+    padding: 3rem 0;
   }
 
   .barbeiros-section h2,
   .servicos-section h2 {
-    font-size: 1.875rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
   }
 
-  .barbeiro-card {
-    padding: 1.5rem;
-  }
-
-  .barbeiro-avatar {
-    width: 85px;
-    height: 85px;
-    font-size: 2.1rem;
-  }
-
-  .barbeiro-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .barbeiro-card p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .servico-item {
-    padding: 1.25rem 1rem;
-  }
-
-  .servico-item h3 {
-    font-size: 1.15rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .servico-item p {
-    font-size: 0.875rem;
-  }
-
-  .cta-section {
-    padding: 3rem 1rem;
-  }
-
-  .cta-section h2 {
-    font-size: 1.875rem;
-  }
-
-  .cta-section p {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 3rem 1rem;
-  }
-
-  .hero-content h1 {
-    font-size: 1.75rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .btn-primary {
-    padding: 0.875rem 1.75rem;
-    font-size: 0.9rem;
-    min-width: 180px;
-  }
-
-  .barbeiros-section h2,
-  .servicos-section h2 {
-    font-size: 1.625rem;
-  }
-
   .barbeiros-grid {
-    grid-template-columns: repeat(3, minmax(160px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .barbeiro-card {
-    padding: 1.25rem;
-  }
-
-  .barbeiro-avatar {
-    width: 75px;
-    height: 75px;
-    font-size: 1.9rem;
-  }
-
-  .barbeiro-card h3 {
-    font-size: 1.2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
   .servicos-grid {
-    gap: 0.875rem;
-  }
-
-  .servico-item {
-    padding: 1.125rem 0.875rem;
-  }
-
-  .servico-item h3 {
-    font-size: 1.1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
 
   .cta-section {
-    padding: 2.5rem 1rem;
+    padding: 3rem 1.5rem;
   }
 
   .cta-section h2 {
-    font-size: 1.625rem;
+    font-size: 2rem;
   }
 }
 
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}

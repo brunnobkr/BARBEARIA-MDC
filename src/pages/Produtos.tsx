@@ -18,8 +18,7 @@ const Produtos = () => {
   ]
 
   const handleComprar = (produto: Produto) => {
-    // Em produção, isso integraria com um sistema de carrinho ou checkout
-    alert(`Produto "${produto.nome}" adicionado ao carrinho!\n\nEntre em contato conosco para finalizar a compra.`)
+    alert(`Produto "${produto.nome}" adicionado!\n\nEntre em contato conosco para finalizar a compra.`)
   }
 
   return (
@@ -38,7 +37,7 @@ const Produtos = () => {
               onClick={() => setCategoriaFiltro(cat.id as any)}
             >
               <span className="filtro-emoji">{cat.emoji}</span>
-              {cat.nome}
+              <span>{cat.nome}</span>
             </button>
           ))}
         </div>
@@ -46,38 +45,30 @@ const Produtos = () => {
         <div className="produtos-grid">
           {produtosFiltrados.map((produto) => (
             <div key={produto.id} className="produto-card">
-              <div className="produto-imagem">
-                <span className="produto-placeholder">
-                  {produto.categoria === 'cabelo' ? '✂️' : 
-                   produto.categoria === 'barba' ? '🧔' : '💊'}
+              <div className="produto-header">
+                <h3>{produto.nome}</h3>
+                <span className="produto-categoria">
+                  {produto.categoria === 'cabelo' && '✂️'}
+                  {produto.categoria === 'barba' && '🧔'}
+                  {produto.categoria === 'tratamento' && '💊'}
                 </span>
               </div>
-              <div className="produto-info">
-                <h3>{produto.nome}</h3>
-                <p className="produto-descricao">{produto.descricao}</p>
-                <div className="produto-footer">
-                  <span className="produto-preco">R$ {produto.preco.toFixed(2)}</span>
-                  <button
-                    className="btn-comprar"
-                    onClick={() => handleComprar(produto)}
-                  >
-                    Comprar
-                  </button>
-                </div>
+              <p className="produto-descricao">{produto.descricao}</p>
+              <div className="produto-footer">
+                <span className="produto-preco">R$ {produto.preco.toFixed(2)}</span>
+                <button 
+                  className="btn-comprar"
+                  onClick={() => handleComprar(produto)}
+                >
+                  Comprar
+                </button>
               </div>
             </div>
           ))}
         </div>
-
-        {produtosFiltrados.length === 0 && (
-          <div className="sem-produtos">
-            <p>Nenhum produto encontrado nesta categoria.</p>
-          </div>
-        )}
       </div>
     </div>
   )
 }
 
 export default Produtos
-

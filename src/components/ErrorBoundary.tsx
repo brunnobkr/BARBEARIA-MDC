@@ -20,11 +20,8 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Em produção, você pode enviar o erro para um serviço de monitoramento
-    // Por exemplo: Sentry, LogRocket, etc.
-    // Em desenvolvimento, loga o erro no console
     if (import.meta.env.DEV) {
-      console.error('Erro capturado pelo ErrorBoundary:', error, errorInfo)
+      console.error('Erro capturado:', error, errorInfo)
     }
   }
 
@@ -32,7 +29,7 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div style={{
-          padding: '2rem',
+          padding: '2rem 1rem',
           textAlign: 'center',
           minHeight: '100vh',
           display: 'flex',
@@ -41,40 +38,26 @@ class ErrorBoundary extends Component<Props, State> {
           alignItems: 'center',
           backgroundColor: '#f5f5f5'
         }}>
-          <h1 style={{ color: '#c41e3a', marginBottom: '1rem' }}>Ops! Algo deu errado</h1>
-          <p style={{ color: '#666', marginBottom: '2rem' }}>
+          <h1 style={{ color: '#c41e3a', marginBottom: '1rem', fontSize: '1.5rem' }}>Ops! Algo deu errado</h1>
+          <p style={{ color: '#666', marginBottom: '2rem', fontSize: '1rem' }}>
             Ocorreu um erro ao carregar a página. Por favor, recarregue a página.
           </p>
           <button
             onClick={() => window.location.reload()}
             style={{
-              padding: '0.75rem 2rem',
+              padding: '1rem 2rem',
               backgroundColor: '#d4af37',
               color: '#1a1a1a',
               border: 'none',
-              borderRadius: '5px',
+              borderRadius: '8px',
               fontSize: '1rem',
               fontWeight: 'bold',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              minHeight: '48px'
             }}
           >
             Recarregar Página
           </button>
-          {this.state.error && (
-            <details style={{ marginTop: '2rem', textAlign: 'left', maxWidth: '600px' }}>
-              <summary style={{ cursor: 'pointer', color: '#666' }}>Detalhes do erro</summary>
-              <pre style={{
-                marginTop: '1rem',
-                padding: '1rem',
-                backgroundColor: '#fff',
-                borderRadius: '5px',
-                overflow: 'auto',
-                fontSize: '0.875rem'
-              }}>
-                {this.state.error.toString()}
-              </pre>
-            </details>
-          )}
         </div>
       )
     }
@@ -84,4 +67,3 @@ class ErrorBoundary extends Component<Props, State> {
 }
 
 export default ErrorBoundary
-

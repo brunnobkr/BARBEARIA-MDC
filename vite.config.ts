@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   base: '/BARBEARIA-MDC/',
@@ -10,7 +9,6 @@ export default defineConfig({
     strictPort: false,
     open: false,
   },
-  assetsInclude: ['**/*.svg'],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

@@ -1,7 +1,7 @@
 {
   "name": "barbearia-mdc",
-  "version": "2.0.0",
-  "description": "Sistema web completo para agendamento de horários da Barbearia MDC",
+  "version": "3.0.0",
+  "description": "Sistema web mobile-first para agendamento de horários da Barbearia MDC",
   "type": "module",
   "author": {
     "name": "brunnobkr",
@@ -10,8 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brunnobkr/BARBEARIA-MDC.git",
-    "directory": "."
+    "url": "https://github.com/brunnobkr/BARBEARIA-MDC.git"
   },
   "homepage": "https://brunnobkr.github.io/BARBEARIA-MDC/",
   "bugs": {
@@ -20,20 +19,17 @@
   "keywords": [
     "barbearia",
     "agendamento",
+    "mobile-first",
     "react",
     "typescript",
     "vite",
-    "spa",
-    "barbershop",
-    "appointment-system"
+    "pwa"
   ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit",
-    "lint": "echo 'Linting not configured'",
-    "format": "echo 'Formatting not configured'"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "react": "^18.2.0",
