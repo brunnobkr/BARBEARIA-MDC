@@ -20,7 +20,11 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Erro capturado pelo ErrorBoundary:', error, errorInfo)
+    // Em produção, você pode enviar o erro para um serviço de monitoramento
+    // Por exemplo: Sentry, LogRocket, etc.
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Erro capturado pelo ErrorBoundary:', error, errorInfo)
+    }
   }
 
   public render() {

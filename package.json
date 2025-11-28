@@ -1,11 +1,26 @@
 {
   "name": "barbearia-mdc",
   "version": "1.0.0",
+  "description": "Sistema web completo para agendamento de horários da Barbearia MDC",
   "type": "module",
+  "author": "brunnobkr",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunnobkr/BARBEARIA-MDC.git"
+  },
+  "keywords": [
+    "barbearia",
+    "agendamento",
+    "react",
+    "typescript",
+    "vite"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "react": "^18.2.0",

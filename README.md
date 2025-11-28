@@ -97,3 +97,15 @@ O workflow já está configurado e fará o build e deploy automaticamente.
 - Em produção, recomenda-se integrar com um backend para persistência de dados
 - O sistema de compra de produtos atualmente apenas exibe um alerta (integrar com sistema de pagamento em produção)
 
+## Contribuindo
+
+Contribuições são bem-vindas! Por favor, leia o [Guia de Contribuição](.github/CONTRIBUTING.md) antes de submeter um Pull Request.
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+## Contato
+
+Para dúvidas ou sugestões, abra uma [Issue](https://github.com/brunnobkr/BARBEARIA-MDC/issues) no GitHub.
+
