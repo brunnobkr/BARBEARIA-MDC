@@ -9,5 +9,18 @@ export default defineConfig({
     strictPort: false, // Se a porta 3000 estiver ocupada, tenta a próxima disponível
   },
   assetsInclude: ['**/*.svg'],
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom']
+        }
+      }
+    }
+  }
 })
 
