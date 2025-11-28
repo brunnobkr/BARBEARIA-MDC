@@ -25,6 +25,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Suporte para safe-area do iPhone (notch) */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 body {
@@ -37,6 +39,9 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   font-size: 16px; /* Previne zoom no iOS */
+  /* Suporte para safe-area do iPhone */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 a {
@@ -60,6 +65,25 @@ select {
   font-size: 16px; /* Previne zoom automático no iOS */
   -webkit-appearance: none;
   appearance: none;
+  border-radius: 0; /* Remove border-radius padrão do iOS */
+}
+
+/* Melhorias específicas para iOS */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  border-radius: var(--radius-sm);
+}
+
+/* Previne highlight azul no iOS */
+input:focus,
+textarea:focus,
+select:focus {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 img {
@@ -68,11 +92,20 @@ img {
   display: block;
 }
 
-/* Touch targets mínimo 44x44px para mobile */
+/* Touch targets mínimo 44x44px para mobile (padrão iOS) */
 button,
 a,
 input[type="button"],
 input[type="submit"] {
   min-height: 44px;
   min-width: 44px;
+  /* Melhorias para iOS */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; /* Remove menu de contexto no iOS */
+  user-select: none;
+}
+
+/* Scroll suave no iOS */
+* {
+  -webkit-overflow-scrolling: touch;
 }

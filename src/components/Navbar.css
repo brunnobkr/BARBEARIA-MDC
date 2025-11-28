@@ -8,7 +8,10 @@
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* iOS Safari */
   background-color: rgba(26, 26, 26, 0.98);
+  /* Suporte para safe-area do iPhone (notch) */
+  padding-top: calc(0.75rem + env(safe-area-inset-top));
 }
 
 .navbar-container {
