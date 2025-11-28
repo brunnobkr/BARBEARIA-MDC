@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { barbeiros } from '../data/barbeiros'
-import { Agendamento } from '../types'
+import { produtos as produtosIniciais } from '../data/produtos'
+import { Agendamento, Produto } from '../types'
 import './Dashboard.css'
 
 const Dashboard = () => {
   const { barbeiro, logout } = useAuth()
   const navigate = useNavigate()
   const [agendamentos, setAgendamentos] = useState<Agendamento[]>([])
-  const [activeTab, setActiveTab] = useState<'agendamentos' | 'servicos' | 'horarios'>('agendamentos')
+  const [activeTab, setActiveTab] = useState<'agendamentos' | 'servicos' | 'horarios' | 'produtos'>('agendamentos')
   const [barbeiroData, setBarbeiroData] = useState(barbeiros.find(b => b.id === barbeiro?.id))
+  const [produtos, setProdutos] = useState<Produto[]>(produtosIniciais)
 
   useEffect(() => {
     if (!barbeiro) {
@@ -38,6 +40,14 @@ const Dashboard = () => {
         setBarbeiroData(dados)
       }
     }
+
+    // Carregar produtos editados
+    const produtosEditados = JSON.parse(localStorage.getItem('produtosEditados') || '[]')
+    if (produtosEditados.length > 0) {
+      setProdutos(produtosEditados)
+    } else {
+      setProdutos(produtosIniciais)
+    }
   }, [barbeiro, navigate])
 
   const handleLogout = () => {
@@ -62,6 +72,19 @@ const Dashboard = () => {
     const barbeirosSalvos = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
     barbeirosSalvos[barbeiro.id] = barbeiroAtualizado
     localStorage.setItem('barbeirosEditados', JSON.stringify(barbeirosSalvos))
+  }
+
+  const updateProduto = (produtoId: string, campo: 'nome' | 'preco' | 'estoque', valor: string | number) => {
+    const produtosAtualizados = produtos.map(p => {
+      if (p.id === produtoId) {
+        return { ...p, [campo]: valor }
+      }
+      return p
+    })
+
+    setProdutos(produtosAtualizados)
+    // Salvar alterações no localStorage
+    localStorage.setItem('produtosEditados', JSON.stringify(produtosAtualizados))
   }
 
   const formatarData = (data: string) => {
@@ -108,6 +131,12 @@ const Dashboard = () => {
           onClick={() => setActiveTab('horarios')}
         >
           ⏰ Horários
+        </button>
+        <button
+          className={`tab ${activeTab === 'produtos' ? 'active' : ''}`}
+          onClick={() => setActiveTab('produtos')}
+        >
+          🛍️ Produtos
         </button>
       </div>
 
@@ -212,6 +241,67 @@ const Dashboard = () => {
             </div>
             <div className="info-box">
               <p>💡 Para editar horários, entre em contato com o administrador.</p>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'produtos' && (
+          <div className="tab-content">
+            <h2>Gerenciar Produtos</h2>
+            <div className="produtos-edit-list">
+              {produtos.map((produto) => (
+                <div key={produto.id} className="produto-edit-card">
+                  <div className="produto-edit-header">
+                    <div className="produto-categoria-badge">
+                      {produto.categoria === 'cabelo' && '✂️'}
+                      {produto.categoria === 'barba' && '🧔'}
+                      {produto.categoria === 'tratamento' && '💊'}
+                    </div>
+                    <h3>{produto.nome}</h3>
+                  </div>
+                  <p className="produto-descricao">{produto.descricao}</p>
+                  
+                  <div className="produto-edit-fields">
+                    <div className="edit-field full-width">
+                      <label>Nome do Produto</label>
+                      <input
+                        type="text"
+                        value={produto.nome}
+                        onChange={(e) => updateProduto(produto.id, 'nome', e.target.value)}
+                        placeholder="Nome do produto"
+                      />
+                    </div>
+                    
+                    <div className="edit-field">
+                      <label>Preço (R$)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={produto.preco}
+                        onChange={(e) => updateProduto(produto.id, 'preco', parseFloat(e.target.value) || 0)}
+                      />
+                    </div>
+                    
+                    <div className="edit-field">
+                      <label>Estoque</label>
+                      <input
+                        type="number"
+                        step="1"
+                        min="0"
+                        value={produto.estoque}
+                        onChange={(e) => updateProduto(produto.id, 'estoque', parseInt(e.target.value) || 0)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="produto-estoque-info">
+                    <span className={`estoque-badge ${produto.estoque === 0 ? 'sem-estoque' : produto.estoque < 5 ? 'estoque-baixo' : 'estoque-ok'}`}>
+                      {produto.estoque === 0 ? 'Sem estoque' : produto.estoque < 5 ? 'Estoque baixo' : 'Em estoque'}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

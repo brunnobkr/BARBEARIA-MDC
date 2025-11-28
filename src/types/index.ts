@@ -37,4 +37,5 @@ export interface Produto {
   descricao: string
   preco: number
   categoria: 'cabelo' | 'barba' | 'tratamento'
+  estoque: number
 }

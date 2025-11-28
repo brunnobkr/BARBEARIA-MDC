@@ -104,11 +104,17 @@
 
 .produto-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.75rem;
   margin-top: auto;
   padding-top: 0.75rem;
   border-top: 1px solid var(--border);
+}
+
+.produto-info-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .produto-preco {
@@ -128,8 +134,29 @@
   min-height: 44px;
 }
 
-.btn-comprar:active {
+.btn-comprar:active:not(.disabled) {
   transform: scale(0.98);
+}
+
+.btn-comprar.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+
+.produto-estoque {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.produto-estoque.estoque-baixo {
+  color: #e65100;
+  font-weight: 500;
+}
+
+.produto-estoque.sem-estoque {
+  color: #c62828;
+  font-weight: 500;
 }
 
 /* Tablet */

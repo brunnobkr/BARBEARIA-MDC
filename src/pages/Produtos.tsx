@@ -1,10 +1,21 @@
-import { useState } from 'react'
-import { produtos } from '../data/produtos'
+import { useState, useEffect } from 'react'
+import { produtos as produtosIniciais } from '../data/produtos'
 import { Produto } from '../types'
 import './Produtos.css'
 
 const Produtos = () => {
   const [categoriaFiltro, setCategoriaFiltro] = useState<'todos' | 'cabelo' | 'barba' | 'tratamento'>('todos')
+  const [produtos, setProdutos] = useState<Produto[]>(produtosIniciais)
+
+  // Carregar produtos editados
+  useEffect(() => {
+    const produtosEditados = JSON.parse(localStorage.getItem('produtosEditados') || '[]')
+    if (produtosEditados.length > 0) {
+      setProdutos(produtosEditados)
+    } else {
+      setProdutos(produtosIniciais)
+    }
+  }, [])
 
   const produtosFiltrados = categoriaFiltro === 'todos' 
     ? produtos 
@@ -55,12 +66,18 @@ const Produtos = () => {
               </div>
               <p className="produto-descricao">{produto.descricao}</p>
               <div className="produto-footer">
-                <span className="produto-preco">R$ {produto.preco.toFixed(2)}</span>
+                <div className="produto-info-footer">
+                  <span className="produto-preco">R$ {produto.preco.toFixed(2)}</span>
+                  <span className={`produto-estoque ${produto.estoque === 0 ? 'sem-estoque' : produto.estoque < 5 ? 'estoque-baixo' : ''}`}>
+                    {produto.estoque === 0 ? 'Fora de estoque' : `${produto.estoque} em estoque`}
+                  </span>
+                </div>
                 <button 
-                  className="btn-comprar"
+                  className={`btn-comprar ${produto.estoque === 0 ? 'disabled' : ''}`}
                   onClick={() => handleComprar(produto)}
+                  disabled={produto.estoque === 0}
                 >
-                  Comprar
+                  {produto.estoque === 0 ? 'Indisponível' : 'Comprar'}
                 </button>
               </div>
             </div>

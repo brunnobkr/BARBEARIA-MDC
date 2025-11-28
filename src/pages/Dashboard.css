@@ -272,6 +272,84 @@
   line-height: 1.5;
 }
 
+.produtos-edit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.produto-edit-card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.produto-edit-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.produto-categoria-badge {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.produto-edit-card h3 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  flex: 1;
+}
+
+.produto-descricao {
+  color: #666;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.produto-edit-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.produto-edit-fields .edit-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.produto-estoque-info {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.estoque-badge {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.estoque-badge.estoque-ok {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.estoque-badge.estoque-baixo {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.estoque-badge.sem-estoque {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
 /* Tablet */
 @media (min-width: 768px) {
   .dashboard-header {
