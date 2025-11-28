@@ -7,7 +7,7 @@ import { Agendamento, Produto } from '../types'
 import './Dashboard.css'
 
 const Dashboard = () => {
-  const { barbeiro, logout } = useAuth()
+  const { barbeiro, logoutBarbeiro } = useAuth()
   const navigate = useNavigate()
   const [agendamentos, setAgendamentos] = useState<Agendamento[]>([])
   const [activeTab, setActiveTab] = useState<'agendamentos' | 'servicos' | 'horarios' | 'produtos'>('agendamentos')
@@ -51,7 +51,7 @@ const Dashboard = () => {
   }, [barbeiro, navigate])
 
   const handleLogout = () => {
-    logout()
+    logoutBarbeiro()
     navigate('/')
   }
 
