@@ -72,39 +72,31 @@
   transform: scale(0.95);
 }
 
-/* Mobile Styles */
+/* Mobile Styles - Mantendo layout horizontal */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0.75rem 0;
+    padding: 0.875rem 0;
   }
 
   .navbar-container {
     padding: 0 1rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .navbar-logo h1 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 1px;
   }
 
   .navbar-menu {
-    width: 100%;
-    justify-content: space-around;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .navbar-menu li {
-    flex: 1;
-    text-align: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
   }
 
   .navbar-menu li a {
-    padding: 0.5rem 0.5rem;
-    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
   }
 
   .logo-img {
@@ -113,24 +105,22 @@
 }
 
 @media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 0.75rem;
+  }
+
   .navbar-logo h1 {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
   }
 
   .navbar-menu {
-    flex-direction: column;
-    gap: 0.25rem;
-    border-top: none;
-    margin-top: 0.75rem;
-  }
-
-  .navbar-menu li {
-    width: 100%;
+    gap: 0.5rem;
   }
 
   .navbar-menu li a {
-    padding: 0.75rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
   }
 }
 
