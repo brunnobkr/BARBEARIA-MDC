@@ -1,32 +1,35 @@
 .barbeiro-page {
   flex: 1;
-  padding: 3rem 0;
+  padding: 2rem 0;
   background-color: var(--bg-light);
+  min-height: calc(100vh - 200px);
 }
 
 .barbeiro-header {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
   background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .barbeiro-avatar-large {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: bold;
   color: var(--text-light);
   flex-shrink: 0;
+  box-shadow: var(--shadow-md);
 }
 
 .barbeiro-info {
@@ -34,9 +37,10 @@
 }
 
 .barbeiro-info h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
   color: var(--primary-color);
+  font-weight: bold;
 }
 
 .barbeiro-descricao {
@@ -54,9 +58,10 @@
 .servicos-section,
 .horarios-section {
   background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .servicos-section h2,
@@ -74,16 +79,21 @@
 }
 
 .servico-card {
-  padding: 1.5rem;
+  padding: 1.25rem;
   border: 2px solid var(--border-color);
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 10px;
+  transition: var(--transition);
 }
 
-.servico-card:hover {
+.servico-card:hover,
+.servico-card:focus {
   border-color: var(--secondary-color);
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+}
+
+.servico-card:active {
+  transform: translateY(-1px);
 }
 
 .servico-card h3 {
@@ -139,32 +149,120 @@
 
 .horario-badge {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.875rem;
   background-color: var(--secondary-color);
   color: var(--text-dark);
-  border-radius: 5px;
+  border-radius: 8px;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
 }
 
 @media (max-width: 768px) {
+  .barbeiro-page {
+    padding: 1.5rem 0;
+  }
+
   .barbeiro-header {
     flex-direction: column;
     text-align: center;
+    padding: 1.25rem;
+    margin: 0 1rem 1.5rem;
   }
 
   .barbeiro-avatar-large {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     font-size: 3rem;
   }
 
   .barbeiro-info h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+
+  .barbeiro-descricao {
+    font-size: 1rem;
+  }
+
+  .barbeiro-content {
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .servicos-section,
+  .horarios-section {
+    padding: 1.25rem;
+  }
+
+  .servicos-section h2,
+  .horarios-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
   }
 
   .servicos-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .servico-card {
+    padding: 1rem;
+  }
+
+  .servico-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .dia-card {
+    padding: 1.25rem;
+  }
+
+  .dia-card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .barbeiro-header {
+    margin: 0 0.75rem 1.25rem;
+    padding: 1rem;
+  }
+
+  .barbeiro-avatar-large {
+    width: 90px;
+    height: 90px;
+    font-size: 2.5rem;
+  }
+
+  .barbeiro-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .barbeiro-descricao {
+    font-size: 0.95rem;
+  }
+
+  .barbeiro-content {
+    padding: 0 0.75rem;
+  }
+
+  .servicos-section,
+  .horarios-section {
+    padding: 1rem;
+  }
+
+  .servicos-section h2,
+  .horarios-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .horarios-list {
+    gap: 0.4rem;
+  }
+
+  .horario-badge {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
   }
 }
 

@@ -5,8 +5,21 @@
 .hero {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
   color: var(--text-light);
-  padding: 6rem 2rem;
+  padding: 4rem 1.5rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .hero-logo {
@@ -17,54 +30,71 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-content h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
+  line-height: 1.2;
 }
 
 .hero-content p {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 0.95;
+  line-height: 1.5;
 }
 
 .btn-primary {
   display: inline-block;
   background-color: var(--secondary-color);
   color: var(--text-dark);
-  padding: 1rem 2.5rem;
-  border-radius: 5px;
+  padding: 1rem 2rem;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  transition: var(--transition);
   text-transform: uppercase;
   letter-spacing: 1px;
+  box-shadow: var(--shadow-md);
+  min-width: 200px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-primary:hover {
   background-color: #b8941f;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .barbeiros-section,
 .servicos-section {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .barbeiros-section h2,
 .servicos-section h2 {
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
   color: var(--primary-color);
+  font-weight: bold;
 }
 
 .barbeiros-grid {
@@ -76,31 +106,38 @@
 
 .barbeiro-card {
   background: white;
-  border-radius: 10px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
   color: var(--text-dark);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.barbeiro-card:hover {
+.barbeiro-card:hover,
+.barbeiro-card:focus {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
+}
+
+.barbeiro-card:active {
+  transform: translateY(-2px);
 }
 
 .barbeiro-avatar {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: bold;
   color: var(--text-light);
+  box-shadow: var(--shadow-md);
 }
 
 .barbeiro-card h3 {
@@ -131,16 +168,22 @@
 
 .servico-item {
   background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.servico-item:hover {
+.servico-item:hover,
+.servico-item:focus {
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
+}
+
+.servico-item:active {
+  transform: translateY(-1px);
 }
 
 .servico-item h3 {
@@ -157,37 +200,142 @@
 .cta-section {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
   color: var(--text-light);
-  padding: 4rem 2rem;
+  padding: 3rem 1.5rem;
   text-align: center;
 }
 
 .cta-section h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .cta-section p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
-  .hero-logo {
-    max-width: 250px;
+  .hero {
+    padding: 3rem 1rem;
   }
 
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
   }
 
   .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  .barbeiros-grid,
+  .btn-primary {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 180px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .barbeiros-section,
+  .servicos-section {
+    padding: 2rem 0;
+  }
+
+  .barbeiros-section h2,
+  .servicos-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .barbeiros-grid {
+    gap: 1.5rem;
+  }
+
+  .barbeiro-card {
+    padding: 1.25rem;
+  }
+
+  .barbeiro-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .barbeiro-card h3 {
+    font-size: 1.25rem;
+  }
+
   .servicos-grid {
-    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .servico-item {
+    padding: 1rem;
+  }
+
+  .servico-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .cta-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 2.5rem 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .barbeiros-section h2,
+  .servicos-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .barbeiro-card {
+    padding: 1rem;
+  }
+
+  .barbeiro-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+  }
+
+  .servico-item h3 {
+    font-size: 1rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
   }
 }
 
