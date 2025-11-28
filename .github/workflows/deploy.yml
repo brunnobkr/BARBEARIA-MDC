@@ -47,17 +47,30 @@ jobs:
             echo "✓ dist folder exists"
             ls -la dist/
             echo ""
-            echo "=== Checking index.html ==="
+            echo "=== Full index.html content ==="
             if [ -f "dist/index.html" ]; then
               echo "✓ index.html exists"
-              head -20 dist/index.html
+              cat dist/index.html
+              echo ""
+              echo "=== Checking for /src/main.tsx reference ==="
+              if grep -q "/src/main.tsx" dist/index.html; then
+                echo "✗ ERROR: index.html still contains /src/main.tsx - Vite did not process it!"
+                exit 1
+              else
+                echo "✓ index.html was processed correctly by Vite"
+              fi
             else
               echo "✗ index.html NOT FOUND"
               exit 1
             fi
             echo ""
             echo "=== Checking for JS bundles ==="
-            find dist -name "*.js" -type f | head -5 || echo "No JS files found"
+            find dist -name "*.js" -type f | head -10 || echo "No JS files found"
+            echo ""
+            echo "=== Checking assets folder ==="
+            if [ -d "dist/assets" ]; then
+              ls -la dist/assets/ | head -10
+            fi
           else
             echo "✗ dist folder NOT FOUND"
             exit 1
