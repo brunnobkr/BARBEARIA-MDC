@@ -29,7 +29,11 @@ const Produtos = () => {
   ]
 
   const handleComprar = (produto: Produto) => {
-    alert(`Produto "${produto.nome}" adicionado!\n\nEntre em contato conosco para finalizar a compra.`)
+    if (produto.estoque === 0) {
+      alert(`Produto "${produto.nome}" está fora de estoque no momento.`)
+      return
+    }
+    alert(`Produto "${produto.nome}" adicionado ao carrinho!\n\nEntre em contato conosco para finalizar a compra.`)
   }
 
   return (
