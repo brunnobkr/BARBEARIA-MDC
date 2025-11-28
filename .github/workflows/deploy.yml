@@ -33,10 +33,19 @@ jobs:
 
       - name: Build
         run: |
-          echo "Running TypeScript check..."
+          echo "=== Step 1: TypeScript Check ==="
           npx tsc --noEmit || echo "TypeScript check completed with warnings"
-          echo "Running Vite build..."
+          echo ""
+          echo "=== Step 2: Vite Build ==="
           npm run build
+          echo ""
+          echo "=== Step 3: Verifying Build Output ==="
+          if [ ! -d "dist" ]; then
+            echo "ERROR: dist folder was not created!"
+            exit 1
+          fi
+          echo "✓ dist folder created"
+          echo ""
           echo "Build completed successfully!"
         continue-on-error: false
 
