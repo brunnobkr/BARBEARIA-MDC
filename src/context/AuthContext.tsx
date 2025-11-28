@@ -35,8 +35,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [])
 
   const loginBarbeiro = (email: string, senha: string): boolean => {
+    // Limpar espaços em branco
+    const emailLimpo = email.trim().toLowerCase()
+    const senhaLimpa = senha.trim()
+
     const barbeiroEncontrado = barbeirosAuth.find(
-      b => b.email === email && b.senha === senha
+      b => b.email.toLowerCase() === emailLimpo && b.senha === senhaLimpa
     )
 
     if (barbeiroEncontrado) {

@@ -6,17 +6,26 @@ Os barbeiros podem acessar o dashboard através do link: `/#/login`
 
 ## Credenciais
 
+⚠️ **IMPORTANTE:** Use exatamente os emails e senhas abaixo (sem espaços extras)
+
 ### Barbeiro Gabriel
-- **Email:** gabriel@barbeariamdc.com
-- **Senha:** gabriel123
+- **Email:** `gabriel@barbeariamdc.com`
+- **Senha:** `gabriel123`
 
 ### Barbeiro Siqueira
-- **Email:** siqueira@barbeariamdc.com
-- **Senha:** siqueira123
+- **Email:** `siqueira@barbeariamdc.com`
+- **Senha:** `siqueira123`
 
 ### Barbeiro Davizin
-- **Email:** davizin@barbeariamdc.com
-- **Senha:** davizin123
+- **Email:** `davizin@barbeariamdc.com`
+- **Senha:** `davizin123`
+
+## Dicas de Login
+
+- Certifique-se de não ter espaços antes ou depois do email/senha
+- O email não diferencia maiúsculas/minúsculas
+- A senha diferencia maiúsculas/minúsculas
+- Se ainda não funcionar, limpe o cache do navegador
 
 ## Funcionalidades do Dashboard
 

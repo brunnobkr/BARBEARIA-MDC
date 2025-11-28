@@ -16,16 +16,28 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setErro('')
+    
+    // Validação básica
+    if (!email.trim()) {
+      setErro('Por favor, informe o email')
+      return
+    }
+
+    if (!senha.trim()) {
+      setErro('Por favor, informe a senha')
+      return
+    }
+
     setLoading(true)
 
     // Simular delay para melhor UX
     setTimeout(() => {
-      const sucesso = loginBarbeiro(email, senha)
+      const sucesso = loginBarbeiro(email.trim(), senha.trim())
 
       if (sucesso) {
         navigate('/dashboard')
       } else {
-        setErro('Email ou senha incorretos')
+        setErro('Email ou senha incorretos. Verifique suas credenciais.')
         setLoading(false)
       }
     }, 500)
