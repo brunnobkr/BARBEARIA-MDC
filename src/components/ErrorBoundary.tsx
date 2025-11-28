@@ -22,7 +22,8 @@ class ErrorBoundary extends Component<Props, State> {
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // Em produção, você pode enviar o erro para um serviço de monitoramento
     // Por exemplo: Sentry, LogRocket, etc.
-    if (process.env.NODE_ENV === 'development') {
+    // Em desenvolvimento, loga o erro no console
+    if (import.meta.env.DEV) {
       console.error('Erro capturado pelo ErrorBoundary:', error, errorInfo)
     }
   }
