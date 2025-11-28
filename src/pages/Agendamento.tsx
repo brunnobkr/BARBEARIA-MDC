@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { barbeiros } from '../data/barbeiros'
-import { Agendamento as AgendamentoType } from '../types'
+import { Agendamento as AgendamentoType, Barbeiro } from '../types'
 import './Agendamento.css'
 
 const Agendamento = () => {
@@ -15,8 +15,19 @@ const Agendamento = () => {
     email: '',
     observacoes: ''
   })
+  const [barbeirosList, setBarbeirosList] = useState<Barbeiro[]>(barbeiros)
 
-  const barbeiro = barbeiros.find(b => b.id === barbeiroSelecionado)
+  // Carregar dados editados pelos barbeiros
+  useEffect(() => {
+    const barbeirosEditados = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
+    const barbeirosAtualizados = barbeiros.map(b => {
+      const editado = barbeirosEditados[b.id]
+      return editado || b
+    })
+    setBarbeirosList(barbeirosAtualizados)
+  }, [])
+
+  const barbeiro = barbeirosList.find(b => b.id === barbeiroSelecionado)
   const servico = barbeiro?.servicos.find(s => s.id === servicoSelecionado)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -73,7 +84,7 @@ const Agendamento = () => {
             <div className="form-step">
               <h2>Selecione o Barbeiro</h2>
               <div className="options-list">
-                {barbeiros.map((b) => (
+                {barbeirosList.map((b) => (
                   <div
                     key={b.id}
                     className={`option-card ${barbeiroSelecionado === b.id ? 'selected' : ''}`}
