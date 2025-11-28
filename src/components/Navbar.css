@@ -67,6 +67,34 @@
   background-color: rgba(212, 175, 55, 0.15);
 }
 
+.navbar-user {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+}
+
+.btn-logout-nav {
+  background: none;
+  color: var(--text-light);
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-logout-nav:hover,
+.btn-logout-nav:focus {
+  color: var(--secondary);
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
 /* Tablet e Desktop */
 @media (min-width: 768px) {
   .navbar {

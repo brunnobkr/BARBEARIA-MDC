@@ -1,15 +1,15 @@
-/* Mobile-First Login Page */
-.login-page {
+/* Mobile-First Cadastro Page */
+.cadastro-page {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
   background: linear-gradient(135deg, var(--primary) 0%, var(--bg-dark) 100%);
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
 }
 
-.login-container {
+.cadastro-container {
   width: 100%;
   max-width: 400px;
   background: white;
@@ -18,30 +18,30 @@
   box-shadow: var(--shadow-lg);
 }
 
-.login-header {
+.cadastro-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.login-header h1 {
+.cadastro-header h1 {
   font-size: 1.75rem;
   color: var(--primary);
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
-.login-header p {
+.cadastro-header p {
   color: #666;
   font-size: 0.9rem;
 }
 
-.login-form {
+.cadastro-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
-.login-error {
+.cadastro-error {
   background-color: #fee;
   color: #c33;
   padding: 0.75rem;
@@ -78,7 +78,7 @@
   border-color: var(--secondary);
 }
 
-.btn-login {
+.btn-cadastro {
   width: 100%;
   padding: 1rem;
   background-color: var(--secondary);
@@ -94,39 +94,38 @@
   margin-top: 0.5rem;
 }
 
-.btn-login:active:not(:disabled) {
+.btn-cadastro:active:not(:disabled) {
   transform: scale(0.98);
 }
 
-.btn-login:disabled {
+.btn-cadastro:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-.login-info {
+.cadastro-footer {
   margin-top: 1.5rem;
   text-align: center;
 }
 
-.info-text {
-  color: #999;
-  font-size: 0.8rem;
-  line-height: 1.4;
+.cadastro-footer p {
+  color: #666;
+  font-size: 0.9rem;
 }
 
-.login-subtitle {
-  color: #999;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
+.link-login {
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: underline;
 }
 
 /* Tablet */
 @media (min-width: 768px) {
-  .login-container {
+  .cadastro-container {
     padding: 2.5rem 2rem;
   }
 
-  .login-header h1 {
+  .cadastro-header h1 {
     font-size: 2rem;
   }
 }

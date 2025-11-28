@@ -4,7 +4,16 @@ import './Navbar.css'
 
 const Navbar = () => {
   const location = useLocation()
-  const { isAuthenticated } = useAuth()
+  const { isBarbeiroAuthenticated, isClienteAuthenticated, cliente, logoutCliente, logoutBarbeiro } = useAuth()
+
+  const handleLogout = () => {
+    if (isClienteAuthenticated) {
+      logoutCliente()
+    }
+    if (isBarbeiroAuthenticated) {
+      logoutBarbeiro()
+    }
+  }
 
   return (
     <nav className="navbar">
@@ -31,12 +40,27 @@ const Navbar = () => {
           >
             Produtos
           </Link>
-          {isAuthenticated && (
+          {isBarbeiroAuthenticated && (
             <Link 
               to="/dashboard" 
               className={`navbar-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
             >
               Dashboard
+            </Link>
+          )}
+          {isClienteAuthenticated ? (
+            <>
+              <span className="navbar-user">Olá, {cliente?.nome.split(' ')[0]}</span>
+              <button onClick={handleLogout} className="navbar-link btn-logout-nav">
+                Sair
+              </button>
+            </>
+          ) : (
+            <Link 
+              to="/login-cliente" 
+              className={`navbar-link ${location.pathname === '/login-cliente' ? 'active' : ''}`}
+            >
+              Login
             </Link>
           )}
         </div>
@@ -46,3 +70,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+

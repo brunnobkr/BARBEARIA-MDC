@@ -1,16 +1,14 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import './Login.css'
+import './LoginCliente.css'
 
-// Login específico para barbeiros
-
-const Login = () => {
+const LoginCliente = () => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [erro, setErro] = useState('')
   const [loading, setLoading] = useState(false)
-  const { loginBarbeiro } = useAuth()
+  const { loginCliente } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -18,12 +16,11 @@ const Login = () => {
     setErro('')
     setLoading(true)
 
-    // Simular delay para melhor UX
     setTimeout(() => {
-      const sucesso = loginBarbeiro(email, senha)
+      const sucesso = loginCliente(email, senha)
 
       if (sucesso) {
-        navigate('/dashboard')
+        navigate('/')
       } else {
         setErro('Email ou senha incorretos')
         setLoading(false)
@@ -32,17 +29,16 @@ const Login = () => {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <div className="login-header">
+    <div className="login-cliente-page">
+      <div className="login-cliente-container">
+        <div className="login-cliente-header">
           <h1>🪒 Barbearia MDC</h1>
-          <p>Área do Barbeiro</p>
-          <p className="login-subtitle">Acesso restrito aos barbeiros</p>
+          <p>Login Cliente</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className="login-cliente-form">
           {erro && (
-            <div className="login-error">
+            <div className="login-cliente-error">
               {erro}
             </div>
           )}
@@ -76,16 +72,19 @@ const Login = () => {
 
           <button 
             type="submit" 
-            className="btn-login"
+            className="btn-login-cliente"
             disabled={loading}
           >
             {loading ? 'Entrando...' : 'Entrar'}
           </button>
         </form>
 
-        <div className="login-info">
-          <p className="info-text">
-            Acesso restrito aos barbeiros da Barbearia MDC
+        <div className="login-cliente-footer">
+          <p>
+            Não tem uma conta?{' '}
+            <Link to="/cadastro" className="link-cadastro">
+              Criar Conta
+            </Link>
           </p>
         </div>
       </div>
@@ -93,5 +92,5 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginCliente
 
