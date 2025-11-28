@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import './Navbar.css'
 
 const Navbar = () => {
   const location = useLocation()
+  const { isAuthenticated } = useAuth()
 
   return (
     <nav className="navbar">
@@ -29,6 +31,14 @@ const Navbar = () => {
           >
             Produtos
           </Link>
+          {isAuthenticated && (
+            <Link 
+              to="/dashboard" 
+              className={`navbar-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
+            >
+              Dashboard
+            </Link>
+          )}
         </div>
       </div>
     </nav>
