@@ -258,6 +258,97 @@
   font-size: 0.875rem;
 }
 
+.horario-edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.dia-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary);
+  font-family: inherit;
+}
+
+.dia-input:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+.btn-remover-dia {
+  padding: 0.5rem 1rem;
+  background-color: #fee;
+  color: #c33;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition);
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.btn-remover-dia:active {
+  background-color: #fcc;
+}
+
+.horarios-input-section {
+  margin-bottom: 1rem;
+}
+
+.horarios-input-section label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.horarios-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.horarios-input:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+.horario-hint {
+  margin-top: 0.5rem;
+  color: #999;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.btn-adicionar-dia {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--secondary);
+  color: var(--text-dark);
+  border-radius: var(--radius);
+  font-weight: bold;
+  font-size: 1rem;
+  transition: var(--transition);
+  margin-top: 1rem;
+  min-height: 48px;
+}
+
+.btn-adicionar-dia:active {
+  transform: scale(0.98);
+}
+
 .info-box {
   background-color: #fffbf0;
   border: 1px solid var(--secondary);

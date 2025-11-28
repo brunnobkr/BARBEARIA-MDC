@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useAuth } from '../context/AuthContext'
 import { barbeiros } from '../data/barbeiros'
 import { Agendamento as AgendamentoType, Barbeiro } from '../types'
 import './Agendamento.css'
@@ -30,6 +31,20 @@ const Agendamento = () => {
   const barbeiro = barbeirosList.find(b => b.id === barbeiroSelecionado)
   const servico = barbeiro?.servicos.find(s => s.id === servicoSelecionado)
 
+  const { cliente } = useAuth()
+
+  useEffect(() => {
+    // Se cliente estiver logado, preencher dados automaticamente
+    if (cliente) {
+      setDadosCliente({
+        nome: cliente.nome,
+        telefone: cliente.telefone,
+        email: cliente.email,
+        observacoes: ''
+      })
+    }
+  }, [cliente])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -42,7 +57,10 @@ const Agendamento = () => {
       clienteNome: dadosCliente.nome,
       clienteTelefone: dadosCliente.telefone,
       clienteEmail: dadosCliente.email,
-      observacoes: dadosCliente.observacoes
+      observacoes: dadosCliente.observacoes,
+      clienteId: cliente?.id,
+      status: 'agendado',
+      dataCriacao: new Date().toISOString()
     }
 
     const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]')

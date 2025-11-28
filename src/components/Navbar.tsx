@@ -50,6 +50,18 @@ const Navbar = () => {
           )}
           {isClienteAuthenticated ? (
             <>
+              <Link 
+                to="/meus-agendamentos" 
+                className={`navbar-link ${location.pathname === '/meus-agendamentos' ? 'active' : ''}`}
+              >
+                Agendamentos
+              </Link>
+              <Link 
+                to="/meus-pedidos" 
+                className={`navbar-link ${location.pathname === '/meus-pedidos' ? 'active' : ''}`}
+              >
+                Pedidos
+              </Link>
               <span className="navbar-user">Olá, {cliente?.nome.split(' ')[0]}</span>
               <button onClick={handleLogout} className="navbar-link btn-logout-nav">
                 Sair

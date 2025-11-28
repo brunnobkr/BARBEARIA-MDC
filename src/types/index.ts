@@ -29,6 +29,9 @@ export interface Agendamento {
   clienteTelefone: string
   clienteEmail?: string
   observacoes?: string
+  clienteId?: string
+  status: 'agendado' | 'cancelado' | 'concluido'
+  dataCriacao: string
 }
 
 export interface Produto {
@@ -38,4 +41,20 @@ export interface Produto {
   preco: number
   categoria: 'cabelo' | 'barba' | 'tratamento'
   estoque: number
+}
+
+export interface Compra {
+  id: string
+  clienteId: string
+  produtos: CompraProduto[]
+  total: number
+  status: 'pendente' | 'cancelado' | 'concluido'
+  dataCriacao: string
+}
+
+export interface CompraProduto {
+  produtoId: string
+  nome: string
+  preco: number
+  quantidade: number
 }

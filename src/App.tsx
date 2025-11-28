@@ -9,6 +9,8 @@ import Login from './pages/Login'
 import LoginCliente from './pages/LoginCliente'
 import Cadastro from './pages/Cadastro'
 import Dashboard from './pages/Dashboard'
+import MeusAgendamentos from './pages/MeusAgendamentos'
+import MeusPedidos from './pages/MeusPedidos'
 import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
@@ -41,6 +43,22 @@ function App() {
                     <Route path="/agendamento" element={<Agendamento />} />
                     <Route path="/barbeiro/:id" element={<Barbeiro />} />
                     <Route path="/produtos" element={<Produtos />} />
+                    <Route
+                      path="/meus-agendamentos"
+                      element={
+                        <ProtectedRoute requireBarbeiro={false}>
+                          <MeusAgendamentos />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/meus-pedidos"
+                      element={
+                        <ProtectedRoute requireBarbeiro={false}>
+                          <MeusPedidos />
+                        </ProtectedRoute>
+                      }
+                    />
                   </Routes>
                 </>
               }

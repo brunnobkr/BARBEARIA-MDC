@@ -33,7 +33,24 @@ const Produtos = () => {
       alert(`Produto "${produto.nome}" está fora de estoque no momento.`)
       return
     }
-    alert(`Produto "${produto.nome}" adicionado ao carrinho!\n\nEntre em contato conosco para finalizar a compra.`)
+
+    // Adicionar ao carrinho (localStorage)
+    const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]')
+    const itemExistente = carrinho.find((item: any) => item.produtoId === produto.id)
+
+    if (itemExistente) {
+      itemExistente.quantidade += 1
+    } else {
+      carrinho.push({
+        produtoId: produto.id,
+        nome: produto.nome,
+        preco: produto.preco,
+        quantidade: 1
+      })
+    }
+
+    localStorage.setItem('carrinho', JSON.stringify(carrinho))
+    alert(`Produto "${produto.nome}" adicionado ao carrinho!`)
   }
 
   return (

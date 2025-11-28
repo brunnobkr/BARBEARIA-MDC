@@ -87,6 +87,79 @@ const Dashboard = () => {
     localStorage.setItem('produtosEditados', JSON.stringify(produtosAtualizados))
   }
 
+  const atualizarHorarios = (index: number, valor: string) => {
+    if (!barbeiroData || !barbeiro) return
+
+    const horariosArray = valor
+      .split(',')
+      .map(h => h.trim())
+      .filter(h => h.length > 0 && /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(h))
+
+    const horariosAtualizados = [...barbeiroData.horariosDisponiveis]
+    horariosAtualizados[index] = {
+      ...horariosAtualizados[index],
+      horarios: horariosArray
+    }
+
+    const barbeiroAtualizado = { ...barbeiroData, horariosDisponiveis: horariosAtualizados }
+    setBarbeiroData(barbeiroAtualizado)
+
+    // Salvar alterações
+    const barbeirosSalvos = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
+    barbeirosSalvos[barbeiro.id] = barbeiroAtualizado
+    localStorage.setItem('barbeirosEditados', JSON.stringify(barbeirosSalvos))
+  }
+
+  const adicionarDia = () => {
+    if (!barbeiroData || !barbeiro) return
+
+    const novoDia = {
+      dia: 'Novo Dia',
+      horarios: []
+    }
+
+    const horariosAtualizados = [...barbeiroData.horariosDisponiveis, novoDia]
+    const barbeiroAtualizado = { ...barbeiroData, horariosDisponiveis: horariosAtualizados }
+    setBarbeiroData(barbeiroAtualizado)
+
+    // Salvar alterações
+    const barbeirosSalvos = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
+    barbeirosSalvos[barbeiro.id] = barbeiroAtualizado
+    localStorage.setItem('barbeirosEditados', JSON.stringify(barbeirosSalvos))
+  }
+
+  const removerDia = (index: number) => {
+    if (!barbeiroData || !barbeiro) return
+    if (!confirm('Tem certeza que deseja remover este dia?')) return
+
+    const horariosAtualizados = barbeiroData.horariosDisponiveis.filter((_, i) => i !== index)
+    const barbeiroAtualizado = { ...barbeiroData, horariosDisponiveis: horariosAtualizados }
+    setBarbeiroData(barbeiroAtualizado)
+
+    // Salvar alterações
+    const barbeirosSalvos = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
+    barbeirosSalvos[barbeiro.id] = barbeiroAtualizado
+    localStorage.setItem('barbeirosEditados', JSON.stringify(barbeirosSalvos))
+  }
+
+  const atualizarNomeDia = (index: number, novoNome: string) => {
+    if (!barbeiroData || !barbeiro) return
+
+    const horariosAtualizados = [...barbeiroData.horariosDisponiveis]
+    horariosAtualizados[index] = {
+      ...horariosAtualizados[index],
+      dia: novoNome
+    }
+
+    const barbeiroAtualizado = { ...barbeiroData, horariosDisponiveis: horariosAtualizados }
+    setBarbeiroData(barbeiroAtualizado)
+
+    // Salvar alterações
+    const barbeirosSalvos = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
+    barbeirosSalvos[barbeiro.id] = barbeiroAtualizado
+    localStorage.setItem('barbeirosEditados', JSON.stringify(barbeirosSalvos))
+  }
+
   const formatarData = (data: string) => {
     return data || 'Data não especificada'
   }
@@ -223,25 +296,58 @@ const Dashboard = () => {
 
         {activeTab === 'horarios' && (
           <div className="tab-content">
-            <h2>Horários Disponíveis</h2>
+            <h2>Gerenciar Horários</h2>
             <div className="horarios-edit-list">
-              {barbeiroData.horariosDisponiveis.map((horario) => (
-                <div key={horario.dia} className="horario-edit-card">
-                  <h3>{horario.dia}</h3>
-                  <div className="horarios-badges">
-                    {horario.horarios.map((h) => (
-                      <span key={h} className="horario-badge">{h}</span>
-                    ))}
+              {barbeiroData.horariosDisponiveis.map((horario, index) => (
+                <div key={`${horario.dia}-${index}`} className="horario-edit-card">
+                  <div className="horario-edit-header">
+                    <input
+                      type="text"
+                      value={horario.dia}
+                      onChange={(e) => atualizarNomeDia(index, e.target.value)}
+                      className="dia-input"
+                    />
+                    <button
+                      type="button"
+                      className="btn-remover-dia"
+                      onClick={() => removerDia(index)}
+                    >
+                      ✕ Remover
+                    </button>
                   </div>
-                  <p className="horario-info">
-                    {horario.horarios.length} horários disponíveis
-                  </p>
+                  <div className="horarios-input-section">
+                    <label>Horários (separados por vírgula):</label>
+                    <input
+                      type="text"
+                      value={horario.horarios.join(', ')}
+                      onChange={(e) => atualizarHorarios(index, e.target.value)}
+                      placeholder="09:00, 10:00, 11:00, 14:00"
+                      className="horarios-input"
+                    />
+                    <p className="horario-hint">Exemplo: 09:00, 10:00, 11:00, 14:00, 15:00</p>
+                  </div>
+                  {horario.horarios.length > 0 && (
+                    <>
+                      <div className="horarios-badges">
+                        {horario.horarios.map((h) => (
+                          <span key={h} className="horario-badge">{h}</span>
+                        ))}
+                      </div>
+                      <p className="horario-info">
+                        {horario.horarios.length} horário{horario.horarios.length !== 1 ? 's' : ''} disponível{horario.horarios.length !== 1 ? 'is' : ''}
+                      </p>
+                    </>
+                  )}
                 </div>
               ))}
             </div>
-            <div className="info-box">
-              <p>💡 Para editar horários, entre em contato com o administrador.</p>
-            </div>
+            <button
+              type="button"
+              className="btn-adicionar-dia"
+              onClick={adicionarDia}
+            >
+              + Adicionar Novo Dia
+            </button>
           </div>
         )}
 
