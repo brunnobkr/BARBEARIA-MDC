@@ -1,6 +1,6 @@
 # Guia de Contribuição
 
-Obrigado por considerar contribuir para o projeto Barbearia MDC!
+Obrigado por considerar contribuir para o projeto Barbearia MDC! 🎉
 
 ## Como Contribuir
 
@@ -14,6 +14,7 @@ Se você encontrou um bug, por favor:
    - Passos para reproduzir
    - Comportamento esperado vs. atual
    - Screenshots (se aplicável)
+   - Informações do ambiente (navegador, versão do Node.js, etc.)
 
 ### Sugerindo Melhorias
 
@@ -38,4 +39,26 @@ Se você encontrou um bug, por favor:
 - Adicione comentários quando necessário
 - Escreva código limpo e legível
 - Teste suas mudanças antes de submeter
+- Mantenha commits pequenos e focados
 
+### Estrutura de Commits
+
+Use mensagens de commit descritivas:
+- `feat: Adiciona nova funcionalidade`
+- `fix: Corrige bug em...`
+- `docs: Atualiza documentação`
+- `style: Ajusta formatação`
+- `refactor: Refatora código`
+- `test: Adiciona testes`
+
+## Processo de Revisão
+
+- Todas as submissões precisam ser revisadas
+- Mantenedores podem sugerir mudanças
+- Após aprovação, seu PR será mergeado
+
+## Código de Conduta
+
+Este projeto segue o [Código de Conduta](CODE_OF_CONDUCT.md). Por favor, leia antes de contribuir.
+
+Obrigado por contribuir! 🚀

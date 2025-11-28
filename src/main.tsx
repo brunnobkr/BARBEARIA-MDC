@@ -4,7 +4,6 @@ import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
 import './index.css'
 
-// Verificar se o elemento root existe
 const rootElement = document.getElementById('root')
 if (!rootElement) {
   throw new Error('Elemento root não encontrado')
@@ -17,4 +16,3 @@ ReactDOM.createRoot(rootElement).render(
     </ErrorBoundary>
   </StrictMode>
 )
-

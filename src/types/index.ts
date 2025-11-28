@@ -40,4 +40,3 @@ export interface Produto {
   imagem?: string
   categoria: 'cabelo' | 'barba' | 'tratamento'
 }
-
