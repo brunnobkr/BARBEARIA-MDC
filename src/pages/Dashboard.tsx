@@ -25,10 +25,18 @@ const Dashboard = () => {
     )
     setAgendamentos(agendamentosBarbeiro)
 
-    // Carregar dados do barbeiro
-    const dados = barbeiros.find(b => b.id === barbeiro.id)
-    if (dados) {
-      setBarbeiroData(dados)
+    // Carregar dados do barbeiro (primeiro tenta carregar edições salvas)
+    const barbeirosEditados = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
+    const dadosEditados = barbeirosEditados[barbeiro.id]
+    
+    if (dadosEditados) {
+      setBarbeiroData(dadosEditados)
+    } else {
+      // Se não houver edições, usa os dados padrão
+      const dados = barbeiros.find(b => b.id === barbeiro.id)
+      if (dados) {
+        setBarbeiroData(dados)
+      }
     }
   }, [barbeiro, navigate])
 
@@ -38,7 +46,7 @@ const Dashboard = () => {
   }
 
   const updateServico = (servicoId: string, campo: 'preco' | 'duracao', valor: number) => {
-    if (!barbeiroData) return
+    if (!barbeiroData || !barbeiro) return
 
     const servicosAtualizados = barbeiroData.servicos.map(s => {
       if (s.id === servicoId) {
@@ -50,16 +58,10 @@ const Dashboard = () => {
     const barbeiroAtualizado = { ...barbeiroData, servicos: servicosAtualizados }
     setBarbeiroData(barbeiroAtualizado)
 
-    // Atualizar no array de barbeiros (em produção, isso seria uma API)
-    const barbeirosAtualizados = barbeiros.map(b => {
-      if (b.id === barbeiro?.id) {
-        return barbeiroAtualizado
-      }
-      return b
-    })
-
-    // Salvar no localStorage (temporário - em produção seria API)
-    localStorage.setItem('barbeiros', JSON.stringify(barbeirosAtualizados))
+    // Salvar alterações no localStorage (em produção, isso seria uma API)
+    const barbeirosSalvos = JSON.parse(localStorage.getItem('barbeirosEditados') || '{}')
+    barbeirosSalvos[barbeiro.id] = barbeiroAtualizado
+    localStorage.setItem('barbeirosEditados', JSON.stringify(barbeirosSalvos))
   }
 
   const formatarData = (data: string) => {
